@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="09ee1a9ce3a7410b863fd388dc59b93b" Name="Diagram1">
+        <EntityTypeShape EntityType="IsmtdbModel.Cart" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IsmtdbModel.Role" Width="1.5" PointX="5.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IsmtdbModel.tblcategory" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IsmtdbModel.tblOrder" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="IsmtdbModel.tblOrderDetail" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IsmtdbModel.tblproduct" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IsmtdbModel.tblUser" Width="1.5" PointX="5.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="IsmtdbModel.UserRole" Width="1.5" PointX="8" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="IsmtdbModel.FK_Cart_tblproduct" ManuallyRouted="false" />
+        <AssociationConnector Association="IsmtdbModel.FK_UserRole_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="IsmtdbModel.FK_tblproduct_tblcategory" ManuallyRouted="false" />
+        <AssociationConnector Association="IsmtdbModel.FK_tblOrderDetail_tblOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="IsmtdbModel.FK_tblOrderDetail_tblproduct" ManuallyRouted="false" />
+        <AssociationConnector Association="IsmtdbModel.FK_UserRole_tblUser" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

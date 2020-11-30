@@ -1,0 +1,13 @@
+C:\Users\Shreya\source\repos\userinfo\userinfo\bin\Debug\userinfo.exe.config
+C:\Users\Shreya\source\repos\userinfo\userinfo\bin\Debug\userinfo.exe
+C:\Users\Shreya\source\repos\userinfo\userinfo\bin\Debug\userinfo.pdb
+C:\Users\Shreya\source\repos\userinfo\userinfo\obj\Debug\userinfo.csprojAssemblyReference.cache
+C:\Users\Shreya\source\repos\userinfo\userinfo\obj\Debug\userinfo.Form1.resources
+C:\Users\Shreya\source\repos\userinfo\userinfo\obj\Debug\userinfo.Properties.Resources.resources
+C:\Users\Shreya\source\repos\userinfo\userinfo\obj\Debug\userinfo.csproj.GenerateResource.cache
+C:\Users\Shreya\source\repos\userinfo\userinfo\obj\Debug\userinfo.csproj.CoreCompileInputs.cache
+C:\Users\Shreya\source\repos\userinfo\userinfo\obj\Debug\userinfo.exe
+C:\Users\Shreya\source\repos\userinfo\userinfo\obj\Debug\userinfo.pdb
+C:\Users\Shreya\source\repos\userinfo\userinfo\obj\Debug\userinfo.Form2.resources
+C:\Users\Shreya\source\repos\userinfo\userinfo\obj\Debug\userinfo.Form3.resources
+C:\Users\Shreya\source\repos\userinfo\userinfo\obj\Debug\userinfo.Form4.resources

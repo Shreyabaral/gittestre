@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IsmtdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="RecordId" />
+    </Key>
+    <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CartId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="Count" Type="Int32" />
+    <Property Name="DateCreated" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="tblproduct" Relationship="Self.FK_Cart_tblproduct" FromRole="Cart" ToRole="tblproduct" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="tblcategory">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblproducts" Relationship="Self.FK_tblproduct_tblcategory" FromRole="tblcategory" ToRole="tblproduct" />
+  </EntityType>
+  <EntityType Name="tblOrder">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Orderdate" Type="DateTime" Precision="0" />
+    <Property Name="DeliveredStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblOrderDetails" Relationship="Self.FK_tblOrderDetail_tblOrder" FromRole="tblOrder" ToRole="tblOrderDetail" />
+  </EntityType>
+  <EntityType Name="tblOrderDetail">
+    <Key>
+      <PropertyRef Name="OrderDetailId" />
+    </Key>
+    <Property Name="OrderDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="tblOrder" Relationship="Self.FK_tblOrderDetail_tblOrder" FromRole="tblOrderDetail" ToRole="tblOrder" />
+    <NavigationProperty Name="tblproduct" Relationship="Self.FK_tblOrderDetail_tblproduct" FromRole="tblOrderDetail" ToRole="tblproduct" />
+  </EntityType>
+  <EntityType Name="tblproduct">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SellingPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsSpecial" Type="Boolean" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_tblproduct" FromRole="tblproduct" ToRole="Cart" />
+    <NavigationProperty Name="tblcategory" Relationship="Self.FK_tblproduct_tblcategory" FromRole="tblproduct" ToRole="tblcategory" />
+    <NavigationProperty Name="tblOrderDetails" Relationship="Self.FK_tblOrderDetail_tblproduct" FromRole="tblproduct" ToRole="tblOrderDetail" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="Userid" />
+    </Key>
+    <Property Name="Userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_tblUser" FromRole="tblUser" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="UserRoleId" />
+    </Key>
+    <Property Name="UserRoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Userid" Type="Int32" />
+    <Property Name="RoleId" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK_UserRole_tblUser" FromRole="UserRole" ToRole="tblUser" />
+  </EntityType>
+  <Association Name="FK_Cart_tblproduct">
+    <End Role="tblproduct" Type="Self.tblproduct" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblproduct">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblproduct_tblcategory">
+    <End Role="tblcategory" Type="Self.tblcategory" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblproduct" Type="Self.tblproduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblcategory">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="tblproduct">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrderDetail_tblOrder">
+    <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblOrderDetail" Type="Self.tblOrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOrder">
+        <PropertyRef Name="OrderId" />
+      </Principal>
+      <Dependent Role="tblOrderDetail">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrderDetail_tblproduct">
+    <End Role="tblproduct" Type="Self.tblproduct" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblOrderDetail" Type="Self.tblOrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblproduct">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="tblOrderDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="Userid" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="Userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="IsmtdbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Carts" EntityType="Self.Cart" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="tblcategories" EntityType="Self.tblcategory" />
+    <EntitySet Name="tblOrders" EntityType="Self.tblOrder" />
+    <EntitySet Name="tblOrderDetails" EntityType="Self.tblOrderDetail" />
+    <EntitySet Name="tblproducts" EntityType="Self.tblproduct" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+    <AssociationSet Name="FK_Cart_tblproduct" Association="Self.FK_Cart_tblproduct">
+      <End Role="tblproduct" EntitySet="tblproducts" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblproduct_tblcategory" Association="Self.FK_tblproduct_tblcategory">
+      <End Role="tblcategory" EntitySet="tblcategories" />
+      <End Role="tblproduct" EntitySet="tblproducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrderDetail_tblOrder" Association="Self.FK_tblOrderDetail_tblOrder">
+      <End Role="tblOrder" EntitySet="tblOrders" />
+      <End Role="tblOrderDetail" EntitySet="tblOrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrderDetail_tblproduct" Association="Self.FK_tblOrderDetail_tblproduct">
+      <End Role="tblproduct" EntitySet="tblproducts" />
+      <End Role="tblOrderDetail" EntitySet="tblOrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_tblUser" Association="Self.FK_UserRole_tblUser">
+      <End Role="tblUser" EntitySet="tblUsers" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
